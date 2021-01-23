@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body{
+            margin:50px;
+        }
+
+        .result{
+            display:block;
+            width:100%;
+            border: black solid 2px;
+            text-align: right;
+            background-color: black;
+            color:white;
+        }
+        .row {
+            display: flex;
+            width:100%;
+            border: black solid 2px;
+        }
+        .half {
+            width:50%
+        }
+        .quarter{
+            width:25%;
+            border: black solid 2px;
+        }
+        .symbol{
+            background-color: burlywood;
+        }        
+        .threequarter {
+            width:75%;
+            border: black solid 2px;
+        }
+    </style>
+   
+</head>
+<body>
+    <div class="calc">
+        <div class="result">0</div>
+        <div class="row">
+            <button class="half">C</button>
+            <button class="quarter"><-</button>
+            <button class="quarter symbol">/</button>
+        </div>
+        <div class="row">
+            <button class="quarter">7</button>
+            <button class="quarter">8</button>
+            <button class="quarter">9</button>
+            <button class="quarter symbol">*</button>
+        </div>
+        <div class="row">
+            <button class="quarter">4</button>
+            <button class="quarter">5</button>
+            <button class="quarter">6</button>
+            <button class="quarter symbol">-</button>
+        </div>
+        <div class="row">
+            <button class="quarter">1</button>
+            <button class="quarter">2</button>
+            <button class="quarter">3</button>
+            <button class="quarter symbol">+</button>
+        </div>
+        <div class="row">
+            <button class="threequarter">0</button>
+            <button class="quarter symbol">=</button>
+        </div>
+    </div>
+</body>
+<script>
+    const button=document.querySelectorAll('button');
+    const result=document.querySelector('.result');
+    button.forEach(element => {
+        element.addEventListener("click",()=>{
+            switch(element.textContent){
+                case "+":
+                case "-":
+                case "/":
+                case "*":
+                    result.textContent=result.textContent+ element.textContent;
+                    break;
+                case "C":
+                result.textContent=0;
+                    break;
+                case "=":
+                    result.textContent=eval(result.textContent); 
+                    break;
+                default:
+                    const currval=result.textContent;
+                    if(currval.indexOf('+')!== -1||currval.indexOf('-')!== -1||currval.indexOf('*')!== -1||currval.indexOf('/')!== -1)
+                        result.textContent=result.textContent+ element.textContent;
+                    else
+                        result.textContent=element.textContent;
+                    break;
+            }
+        })
+    });
+</script>
+</html>
